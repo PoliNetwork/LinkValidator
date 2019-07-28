@@ -22,6 +22,7 @@ for p in data['info_data']:
         pbl_link_format = "https://t.me/"
         pbl_link_format += p.split("/")[len(p.split("/")) - 1]
 
-        if validate_link(pvt_link_format) == False and validate_link(pbl_link_format) == False:
+        if validate_link(pvt_link_format) is False and validate_link(pbl_link_format) is False:
             class_name = data['info_data'][p]['class']
-            print(f"Link of {class_name} not working anymore. You're pleased to update it. ({pvt_link_format} or {pbl_link_format}")
+            print(f"Link of {class_name} not working anymore. You're pleased to update it. "
+                  f"({pvt_link_format} or {pbl_link_format}")
