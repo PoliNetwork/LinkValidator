@@ -7,10 +7,7 @@ def get_db_as_json():
 
 
 def validate_link(link):
-    result = requests.get(link).text
-    if not ("tgme_page_title" in result):
-        return False
-    return True
+    return "tgme_page_title" in requests.get(link).text
 
 
 data = get_db_as_json()
