@@ -13,6 +13,7 @@ def validate_link(link):
 def main(yearSelected):
     separator = ' |-| '
 
+    count_items = 0
     data = get_db_as_json()
     for p in data['info_data']:
         if not ("FB" in p) and ("TG" in p):
@@ -28,6 +29,9 @@ def main(yearSelected):
                 if validate_link(pvt_link_format) is False and validate_link(pbl_link_format) is False:
                     class_name = data['info_data'][p]['class']
                     print(f"{class_name}{separator}{pvt_link_format}{separator}{pbl_link_format}{separator}{year}")
+                    count_items = count_items + 1
+
+    print("Total " + str(count_items))
 
 
 main("2019/2020")
