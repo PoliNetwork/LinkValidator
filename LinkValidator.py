@@ -10,16 +10,17 @@ def validate_link(link):
     return "tgme_page_title" in requests.get(link).text
 
 
-def main(yearSelected):
+def main(year_selected):
     separator = ' |-| '
 
     count_items = 0
     data = get_db_as_json()
+
     for p in data['info_data']:
         if not ("FB" in p) and ("TG" in p):
 
             year = data['info_data'][p]['year']
-            if year is None or year == "" or year == yearSelected:
+            if year is None or year == "" or year == year_selected:
                 pvt_link_format = "https://t.me/joinchat/"
                 pvt_link_format += p.split("/")[len(p.split("/")) - 1]
 
