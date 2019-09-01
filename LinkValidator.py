@@ -10,7 +10,7 @@ def validate_link(link):
     return "tgme_page_title" in requests.get(link).text
 
 
-def main(year_selected):
+def main():
     separator = ' |-| '
 
     count_items = 0
@@ -20,19 +20,21 @@ def main(year_selected):
         if not ("FB" in p) and ("TG" in p):
 
             year = data['info_data'][p]['year']
-            if year is None or year == "" or year == year_selected:
-                pvt_link_format = "https://t.me/joinchat/"
-                pvt_link_format += p.split("/")[len(p.split("/")) - 1]
 
-                pbl_link_format = "https://t.me/"
-                pbl_link_format += p.split("/")[len(p.split("/")) - 1]
+            pvt_link_format = "https://t.me/joinchat/"
+            pvt_link_format += p.split("/")[len(p.split("/")) - 1]
 
-                if validate_link(pvt_link_format) is False and validate_link(pbl_link_format) is False:
-                    class_name = data['info_data'][p]['class']
-                    print(f"{class_name}{separator}{pvt_link_format}{separator}{pbl_link_format}{separator}{year}")
-                    count_items = count_items + 1
+            pbl_link_format = "https://t.me/"
+            pbl_link_format += p.split("/")[len(p.split("/")) - 1]
+
+            if validate_link(pvt_link_format) is False and validate_link(pbl_link_format) is False:
+                class_name = data['info_data'][p]['class']
+                permanent_id = data['info_data'][p]['permanentId']
+                print(f"{class_name}{separator}{pvt_link_format}{separator}"
+                      f"{pbl_link_format}{separator}{year}{separator}{permanent_id}")
+                count_items = count_items + 1
 
     print("Total " + str(count_items))
 
 
-main("2019/2020")
+main()
