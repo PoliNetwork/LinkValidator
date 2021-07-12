@@ -1,12 +1,12 @@
 #!/bin/env bash
 
-< <(rg -n 'https?://t.me/(joinchat/)?[A-Za-z0-9_-]+') mapfile -t matches
+< <(git grep -nE 'https?://t.me/(joinchat/)?[A-Za-z0-9_-]+') mapfile -t matches
 
 regex_parse_match='([^:]+:[0-9]+):.*"?(https?://t.me/(joinchat/)?[A-Za-z0-9_-]+)'
 regex_bad_invite=$'(^|\n)[[:space:]]*<meta property="og:title" content="Join group chat on Telegram"'
 
 (( ${#matches[@]} >= 1 )) \
-    || exit
+    || exit 0
 
 printf 'Checking %d URL%c...\n' "${#matches[@]}" "${matches[1]+s}"
 
