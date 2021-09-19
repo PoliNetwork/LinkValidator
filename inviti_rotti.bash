@@ -1,6 +1,6 @@
 #!/bin/env bash
 
-< <(git grep -nE 'https?://t.me/(joinchat/)?[A-Za-z0-9_-]+') mapfile -t matches
+< <( git grep -nE 'https?://t.me/(joinchat/)?[A-Za-z0-9_-]+' ':(exclude)old/*' ':(exclude)old_pn/*') mapfile -t matches
 
 regex_parse_match='([^:]+:[0-9]+):.*"?(https?://t.me/(joinchat/)?[A-Za-z0-9_-]+)'
 regex_bad_invite=$'(^|\n)[[:space:]]*<meta property="og:title" content="Join group chat on Telegram"'
