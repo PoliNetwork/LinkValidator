@@ -2,7 +2,7 @@ import requests
 
 
 def get_db_as_json():
-    url = "https://polinetwork.github.io/data/search/groups3.json"
+    url = "https://polinetwork.org/data/search/groups3.json"
     return requests.get(url).json()
 
 
